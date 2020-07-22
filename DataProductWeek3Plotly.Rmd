@@ -1,0 +1,39 @@
+---
+title: "Data Products - Week3 Presentation with Plotly"
+author: "Pete Petersen"
+date: "7/21/2020"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Data Project
+
+Create a web page presentation using R Markdown that features a plot created with Plotly. Host your webpage on either GitHub Pages, RPubs, or NeoCities. Your webpage must contain the date that you created the document, and it must contain a plot created with Plotly. We would love to see you show off your creativity!
+
+#### The rubric contains the following two questions:
+
+1. Does the web page feature a date and is this date less than two months before the date that you're grading this assignment?  
+2. Is the web page a presentation and does it feature an interactive plot that appears to have been created with Plotly?  
+
+
+## Slide with R Output
+
+```{r libraries, message=FALSE, echo=TRUE, warning=FALSE}
+
+list.of.packages <- c("plotly","dplyr","data.table")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages,repos='http://cran.us.r-project.org')
+library(dplyr)
+library(plotly)
+
+```
+
+## Pressure vs. Temperature
+
+```{r pressure, echo=FALSE, message=FALSE}
+plot_ly(pressure, x =pressure$temperature, y = pressure$pressure)
+```
+

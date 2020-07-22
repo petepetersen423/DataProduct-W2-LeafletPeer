@@ -1,0 +1,38 @@
+---
+title: "Conflicts in Africa"
+author: "Pete Petersen III"
+date: "7/21/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r libraries, message=FALSE, echo=FALSE, warning=FALSE}
+list.of.packages <- c("cdcfluview","leaflet","dplyr","data.table","spDataLarge", "spData")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages,repos='http://cran.us.r-project.org')
+library(dplyr)
+library(leaflet)
+library(spData)
+```
+
+```{r, echo=FALSE}
+
+data("afcon")
+
+```
+
+
+```{r, echo=FALSE}
+mymap <- leaflet(afcon) %>% 
+  addTiles() %>% 
+  addCircleMarkers(lat = afcon$y, lng = afcon$x, radius = afcon$totcon/100) %>%
+  addPopups(lat = afcon$y, lng = afcon$x,afcon$totcon)
+
+mymap
+
+```
+
